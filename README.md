@@ -1,88 +1,101 @@
 # Dental Legacy BI Migration | SQL Server → Microsoft Fabric → Power BI
 
-**Independent portfolio proof of concept using fully synthetic dental data.** This repository is **not affiliated with or endorsed by Pacific Smiles Group**, contains no real patient or company data, and does not represent that organisation’s internal systems. The dashboard's blue-and-green visual identity was inspired by publicly visible brand styling, not an official design system.
+**Independent portfolio proof of concept using synthetic dental data.** This project is **not affiliated with or endorsed by Pacific Smiles Group** and does not use real patient or company data. The dashboard's blue-and-green styling was inspired by publicly visible corporate branding, not an official design system.
 
 ![Executive overview report](screenshots/01_executive_overview.png)
 
-## Overview
+**Quick review:** [Case Study (PDF)](docs/Case_Study.pdf) · [Dashboard Preview (PDF)](docs/Dashboard_Preview.pdf)
 
-This project simulates modernising legacy monthly reporting for a fictional 12-centre dental network. It begins with a purpose-built synthetic dataset and SQL Server reporting baseline, stages raw data in a Fabric Lakehouse, produces curated Delta reporting tables and reconciliation checks, and presents results in a three-page Power BI report.
+## Project overview
 
-**Quick review:** [Case Study (PDF)](docs/Case_Study.pdf) · [3-page Dashboard Preview (PDF)](docs/Dashboard_Preview.pdf)
+A fictional 12-centre dental network provides the scenario for a legacy business-intelligence migration. The project uses eight designed and generated synthetic source tables, a SQL Server legacy reporting baseline, Microsoft Fabric Lakehouse Delta tables, PySpark transformation and reconciliation, and a three-page Power BI report.
 
-## Architecture
+### Architecture
 
 ```text
-Synthetic dental CSV data (8 source files)
-         ↓
-SQL Server legacy schema + baseline financial reporting
-         ↓
-Microsoft Fabric Lakehouse: Files/raw CSV → Delta tables
-         ↓
-PySpark notebooks: financial and payment reconciliation
-         ↓
-Curated reporting + validation tables
-         ↓
-Power BI semantic model → 3-page interactive report
+Eight synthetic source CSVs
+        ↓
+SQL Server legacy tables + reference reporting checks
+        ↓
+Microsoft Fabric Lakehouse (Files/raw → Delta tables)
+        ↓
+PySpark transformations + financial/payment reconciliation
+        ↓
+Curated/validation tables
+        ↓
+Power BI semantic model + three interactive dashboard pages
 ```
 
-## Dataset and observed results
+## Dataset and reported results
 
-| Item | Count / result |
+| Measure | Result |
 | --- | ---: |
 | Dental centres | 12 |
 | Practitioners | 84 |
 | Service catalogue entries | 8 |
 | Appointment records | 7,200 |
 | Completed appointments / invoices | 6,198 |
-| Payment records / fully paid invoices | 5,824 |
+| Fully paid invoices / payment records | 5,824 |
 | Unpaid invoices | 374 |
-| Monthly target rows | 144 |
-| Monthly legacy report rows | 144 |
-| Financial centre-month reconciliation groups | **144 passed / 0 failed** |
+| Monthly targets | 144 rows |
+| Legacy monthly financial reference | 144 rows |
+| Financial reconciliation | **144 passed / 0 failed** |
 | Gross invoiced | **A$2,873,354** |
-| Collected payments | **A$2,689,156** |
+| Payments collected | **A$2,689,156** |
 | Outstanding balance | **A$184,198** |
 | Facility service fees | **A$1,008,051.76** |
 
-Figures are outcomes reported from the completed proof of concept and PDF dashboard, not evidence of production performance. Gross patient fees and facility service fees are different measures.
+These are reported outcomes of the synthetic proof of concept, not production dental business results. Gross patient fees and facility service fees are different financial measures.
 
-## Explore the repository
+## Repository guide
 
-| Folder | Contents |
+| Location | What you can review |
 | --- | --- |
-| [`data/`](data/) | Eight synthetic CSV source tables |
-| [`sql/`](sql/) | SQL Server DDL and baseline financial reconciliation/data-quality queries |
-| [`docs/DATA_DICTIONARY.md`](docs/DATA_DICTIONARY.md) | Source definitions and reporting business rules |
-| [`docs/Case_Study.pdf`](docs/Case_Study.pdf) | Two-page professional technical summary |
-| [`docs/Dashboard_Preview.pdf`](docs/Dashboard_Preview.pdf) | Final Power BI dashboard preview |
-| [`screenshots/`](screenshots/) | Rendered images of all three Power BI pages |
-| [`fabric/notebooks/`](fabric/notebooks/) | **Pending:** exports of real executed Fabric notebooks |
-| [`fabric/evidence/`](fabric/evidence/) | **Pending:** real Lakehouse and notebook execution screenshots |
-| [`powerbi/`](powerbi/) | Notes about the live Power BI project and secure sharing |
+| [`data/`](data/) | All eight synthetic source CSV tables |
+| [`sql/`](sql/) | SQL Server table definitions and legacy financial/data-quality queries |
+| [`docs/DATA_DICTIONARY.md`](docs/DATA_DICTIONARY.md) | Data dictionary and business rules |
+| [`docs/Case_Study.pdf`](docs/Case_Study.pdf) | Two-page project case study |
+| [`docs/Dashboard_Preview.pdf`](docs/Dashboard_Preview.pdf) | Three-page Power BI PDF export |
+| [`screenshots/`](screenshots/) | Executive, financial and migration-quality report screenshots |
+| [`fabric/evidence/`](fabric/evidence/) | **Exported Fabric notebooks currently uploaded**, plus real Lakehouse screenshots |
+| [`fabric/notebooks/`](fabric/notebooks/) | Notebook index and notes; actual `.ipynb` exports are presently under `fabric/evidence/` |
+| [`powerbi/`](powerbi/) | Power BI project-sharing notes; native PBIP/PBIX is not published here |
+
+### Available Microsoft Fabric evidence
+
+- [`01_Legacy_Data_Ingestion.ipynb`](fabric/evidence/01_Legacy_Data_Ingestion.ipynb) — exported ingestion notebook.
+- [`02_Financial_Reconciliation.ipynb`](fabric/evidence/02_Financial_Reconciliation.ipynb) — exported PySpark financial reconciliation notebook.
+- [`LakehouseTables.PNG`](fabric/evidence/LakehouseTables.PNG) — screenshot of the Fabric Lakehouse tables interface.
+- [`DentalLegacyLakehouse.PNG`](fabric/evidence/DentalLegacyLakehouse.PNG) — screenshot from the Fabric Lakehouse environment.
+
+**Not yet published:** `03_Payment_Reconciliation.ipynb`, the exported notebook for the payment-level reconciliation process. The payment figures are reported in the case study and dashboard, but that portion's executable Fabric notebook is not yet supplied for independent inspection.
+
+The notebooks and screenshots document the proof-of-concept implementation; screenshots alone do not provide independent end-to-end reproducibility.
 
 ## Dashboard pages
 
-1. **Executive Overview** — 12 centres; 6,198 completed appointments; 86.1% completion; A$1.008M facility service fees; +46.0% versus target.
-2. **Financial & Payment Analysis** — A$2.87M invoiced; A$2.69M received; A$184.20K outstanding; 93.6% collection rate; paid/unpaid invoice distribution.
-3. **Migration & Data Quality** — 144 validation groups, 144 PASS, 0 FAIL; Legacy-vs-Fabric facility fees by centre and monthly reconciliation detail.
+1. **Executive Overview:** centre and appointment performance, monthly facility fees, clinic comparisons, and actual versus target.
+2. **Financial & Payment Analysis:** billed, collected and outstanding fees, collection rate, monthly trends and payment status.
+3. **Migration & Data Quality:** financial reconciliation status, Legacy-versus-Fabric comparison, and validation detail.
 
-## Reproducing the source-side baseline
+## Reproducing the SQL Server baseline
 
-1. Create a SQL Server database and the `legacy` schema as needed.
-2. Execute [`sql/01_create_legacy_tables.sql`](sql/01_create_legacy_tables.sql).
-3. Import each matching CSV in [`data/`](data/) into the legacy tables using SSMS or a controlled import procedure, preserving IDs, dates and decimals.
-4. Execute [`sql/02_legacy_reporting_and_checks.sql`](sql/02_legacy_reporting_and_checks.sql) to compare recomputed figures with the legacy monthly financial baseline and run integrity checks.
-5. For the Fabric portion, follow the documented [implementation plan](docs/FABRIC_IMPLEMENTATION_PLAN.md) alongside the **actual exported execution notebooks** once they have been added. The plan alone does not prove execution.
+1. Create a database and the `legacy` schema in SQL Server.
+2. Run [`sql/01_create_legacy_tables.sql`](sql/01_create_legacy_tables.sql).
+3. Import the matching CSVs in [`data/`](data/) while preserving identifiers, dates and decimal precision.
+4. Run [`sql/02_legacy_reporting_and_checks.sql`](sql/02_legacy_reporting_and_checks.sql) to validate the legacy financial baseline and integrity checks.
+5. Review the [Fabric implementation plan](docs/FABRIC_IMPLEMENTATION_PLAN.md) and the **actually exported** notebooks in [`fabric/evidence/`](fabric/evidence/). The implementation plan is documentation, not evidence of executed code.
 
-## AI-assisted development
+Rebuilding the entire Fabric/Power BI environment also requires suitable Fabric resources, Lakehouse configuration and the unpublished Power BI model.
 
-Claude Code was used to help refine the Power BI dashboard's visual design, layout and navigation. The author reviewed the model, DAX measures and reconciliation results. The project should be assessed on the reproducible data pipeline, explicit validation logic and demonstrated report outputs rather than on appearance alone.
+## Visual design and AI assistance
 
-## What is and isn't independently verifiable here
+The Power BI report uses a blue-and-green visual style inspired by Pacific Smiles Group's publicly visible branding. Claude Code assisted with the Power BI dashboard layout, visual styling and navigation. The author reviewed model calculations and reconciliation results. No official branding approval or company affiliation is implied.
 
-The CSVs and SQL scripts are included and reviewable; the final Power BI output is supplied as screenshots and PDF. The current bundle does **not yet contain exported Fabric notebook source or runtime screenshots**. The documented Fabric execution results must be supplemented with those actual exports rather than fabricated proof. The native Power BI project is also withheld from the public bundle pending connection-metadata review.
+## Evidence scope and limitations
 
-## License and usage
+The published repository includes source CSVs, SQL scripts, two exported Fabric notebooks, Lakehouse screenshots, PDF documentation and report images. The payment reconciliation notebook (`03_Payment_Reconciliation.ipynb`) and native Power BI project have **not** been published. The screenshots provide supporting visual evidence, not independent proof of every execution result.
 
-Educational portfolio material and synthetic data. Do not attribute the underlying dataset, schema, visuals or reported outcomes to Pacific Smiles Group or real dental operations.
+## Usage
+
+Educational portfolio project using synthetic data. Do not present the dataset, performance figures or system design as official Pacific Smiles Group information.
