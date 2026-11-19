@@ -1,13 +1,16 @@
-# Microsoft Fabric notebooks — export required
+# Microsoft Fabric notebook index
 
-The notebooks executed in the user's Microsoft Fabric workspace are **not included** in the available source archives. Do not treat the starter `docs/FABRIC_IMPLEMENTATION_PLAN.md` as executed code.
+The real exported Fabric `.ipynb` files were uploaded to **[`../evidence/`](../evidence/)** rather than this directory. They are linked here so reviewers can find them immediately.
 
-Export these **actual executed** notebooks from Fabric and add their `.ipynb` files here:
+## Available notebooks
 
-- `01_...` (raw CSV-to-Delta ingestion notebook, if used)
-- `02_Financial_Reconciliation.ipynb`
-- `03_Payment_Reconciliation.ipynb`
+1. [`01_Legacy_Data_Ingestion.ipynb`](../evidence/01_Legacy_Data_Ingestion.ipynb) — source ingestion into Microsoft Fabric Lakehouse.
+2. [`02_Financial_Reconciliation.ipynb`](../evidence/02_Financial_Reconciliation.ipynb) — PySpark monthly financial calculation and reconciliation.
 
-Include code cells with outputs only if they are suitable for public disclosure. Do not publish tokens, API credentials, tenant secrets, or private endpoints.
+## Not yet published
 
-Until exported, this repository documents Fabric outcomes via the independently prepared case study and PDF dashboard, but does **not** provide independently executable evidence of the Fabric processing.
+3. `03_Payment_Reconciliation.ipynb` — actual payment reconciliation notebook still needs to be exported and committed.
+
+The starter [Fabric implementation plan](../../docs/FABRIC_IMPLEMENTATION_PLAN.md) describes intended steps and is **not** a substitute for exported executable code. The screenshots and other evidence are indexed in [`../evidence/README.md`](../evidence/README.md).
+
+If notebook files are later moved into this directory, update these links accordingly. Never publish credentials, authentication tokens or private endpoints.
