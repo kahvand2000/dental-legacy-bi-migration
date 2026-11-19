@@ -1,0 +1,13 @@
+centre_id,centre_name,state,brand,active_chairs
+1,Newcastle Central,NSW,Pacific-style,7
+2,Green Hills,NSW,Pacific-style,6
+3,Charlestown,NSW,Pacific-style,8
+4,Parramatta,NSW,Pacific-style,9
+5,Wollongong,NSW,nib-style,6
+6,Brisbane North,QLD,Pacific-style,7
+7,Gold Coast,QLD,Pacific-style,5
+8,Melbourne East,VIC,Pacific-style,8
+9,Geelong,VIC,nib-style,5
+10,Perth West,WA,HBF-style,6
+11,Canberra,ACT,Pacific-style,5
+12,Sydney CBD,NSW,Pacific-style,10

@@ -1,0 +1,10 @@
+GITHUB WEB UPLOAD INSTRUCTIONS
+
+1) Open your NEW empty GitHub repository.
+2) Choose "uploading an existing file" (or Add file → Upload files).
+3) Open the extracted dental-legacy-bi-migration-github folder on your laptop.
+4) Select README.md, .gitignore, data, sql, docs, screenshots, fabric, powerbi and drag them into the GitHub upload area. If your browser does not preserve folders, use GitHub Desktop or git command line; do NOT upload the .zip as the only repository content.
+5) Commit changes. Open the repository homepage and check README image plus Case Study / Dashboard Preview links.
+6) In Fabric, export the REAL executed notebooks and add them under fabric/notebooks; add actual Lakehouse screenshots under fabric/evidence.
+7) Inspect files for secrets, tokens, workspace IDs and connection strings before public upload. Do not upload internal cache files or .pbix as part of this initial bundle.
+8) Once the repository is readable, share its URL with Ben along with the two PDFs.

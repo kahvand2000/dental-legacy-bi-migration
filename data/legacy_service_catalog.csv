@@ -1,0 +1,9 @@
+service_code,service_name,standard_fee_aud
+EXAM,Examination,95
+CLEAN,Scale and clean,170
+FILL,Filling,225
+CROWN,Crown,1450
+XRAY,Dental imaging,75
+ROOT,Root canal,980
+ORTHO,Orthodontic visit,290
+EXTRACT,Extraction,320
