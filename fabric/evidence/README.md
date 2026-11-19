@@ -1,10 +1,23 @@
-# Lakehouse execution evidence — add real screenshots
+# Microsoft Fabric Lakehouse — uploaded evidence
 
-Capture real screenshots in Microsoft Fabric, not mock-ups:
+This folder contains **actual artifacts uploaded from the Fabric work**, not fabricated examples.
 
-1. `lakehouse_delta_tables.png` — Lakehouse Explorer showing Files and Delta Tables.
-2. `financial_reconciliation_run.png` — executed financial notebook/output displaying 144 PASS and 0 FAIL.
-3. `payment_reconciliation_run.png` — executed payment reconciliation notebook/output with paid and unpaid invoice counts.
-4. `sql_analytics_endpoint.png` — optional SQL analytics endpoint/table list, omitting identifiers where appropriate.
+## Currently available
 
-Redact personal, tenant, workspace, or sensitive identifiers before publishing. These files are not yet included.
+| File | Description |
+| --- | --- |
+| [`01_Legacy_Data_Ingestion.ipynb`](01_Legacy_Data_Ingestion.ipynb) | Exported PySpark notebook for ingestion into the Lakehouse |
+| [`02_Financial_Reconciliation.ipynb`](02_Financial_Reconciliation.ipynb) | Exported financial reconciliation notebook |
+| [`LakehouseTables.PNG`](LakehouseTables.PNG) | Fabric Lakehouse tables screenshot |
+| [`DentalLegacyLakehouse.PNG`](DentalLegacyLakehouse.PNG) | Fabric Lakehouse environment screenshot |
+
+A further copy of the Lakehouse screenshot is available at [`../DentalLegacyLakehouse.PNG`](../DentalLegacyLakehouse.PNG).
+
+## Still to add
+
+- `03_Payment_Reconciliation.ipynb` — the actual exported payment reconciliation notebook.
+- If available, screenshots clearly showing the final executed financial and payment reconciliation outputs, with result counts and run status.
+
+The project case study reports **144 financial centre-month groups passed, 0 failed** and 5,824 fully paid versus 374 unpaid invoices. Uploaded code and interface screenshots support review of the implementation, but the independently reviewable evidence is limited to the artifacts above.
+
+Before publishing further screenshots or notebooks, remove access tokens, tenant secrets, personal identifiers and private connection strings.
